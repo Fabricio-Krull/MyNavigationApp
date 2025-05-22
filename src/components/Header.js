@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
-const text = "<<< Voltar";
+const text = "Back";
 
 export default function Header( { navigation } ){
     navigation = useNavigation();
@@ -15,8 +15,15 @@ export default function Header( { navigation } ){
             <TouchableOpacity
                 style={styles.button}
                 onPress = {() => navigation.goBack()}
-            >
-                <Text style={{fontSize: 30}}>{text}</Text>
+            >   
+                <View style={{display: 'flex',flexDirection: 'row', height: 'auto'}}>
+                    <Image 
+                        style={styles.image}
+                        source={require('../images/goBack.png')}
+                    ></Image>
+                    <Text style={{fontSize: 30}}>{text}</Text>
+                </View>
+
             </TouchableOpacity>
 
         </View>
@@ -36,7 +43,13 @@ const styles = StyleSheet.create({
     },
     button: {
 
-        width: windowWidth * 0.5
+        width: windowWidth * 0.8
+
+    },
+    image: {
+
+        height: '100%',
+        width: '30%'
 
     }
 

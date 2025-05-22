@@ -14,7 +14,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
             style={styles.input}
             keyboardType="default"
-            placeholder="insira o seu email..."
+            placeholder="here goes your email..."
             value={nome}
             onChangeText={setNome}
         />
@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
             style={styles.input}
             keyboardType="default"
-            placeholder="insira a sua senha..."
+            placeholder="here goes your password..."
             value={senha}
             onChangeText={setSenha}
             secureTextEntry = {true}
