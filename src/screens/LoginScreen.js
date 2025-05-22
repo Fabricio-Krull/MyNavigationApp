@@ -14,7 +14,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
             style={styles.input}
             keyboardType="default"
-            placeholder="here goes your email..."
+            placeholder="here goes your username..."
             value={nome}
             onChangeText={setNome}
         />
@@ -32,7 +32,11 @@ export default function LoginScreen({ navigation }) {
             style={styles.button}
             onPress = {() => {
 
-                if(senha && nome){
+                if (!senha && !nome){
+                    alert("Insert the information to complete the signing up");
+                }
+                else if(senha == "Tears For Fears" && nome.toLowerCase() == "curt smith"){
+                    // a senha é case sensitive, mas o nome não
 
                     navigation.navigate("Home");
 
