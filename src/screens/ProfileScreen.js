@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
 import Header from "../components/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -27,6 +28,13 @@ export default function ProfileScreen({ navigation }) {
                     >
                         <Text style={{fontSize: 20, alignContent: 'center', justifyContent: 'center'}}>Go To Details</Text>
                     </TouchableHighlight>
+                </View>
+
+                <View>
+                    <Text>
+                        Nome: {AsyncStorage.getItem('name')}
+                        
+                    </Text>
                 </View>
             </View>
     );

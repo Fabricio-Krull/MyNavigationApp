@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableHighlight, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get('window').width;
 export default function LoginScreen({ navigation }) {
@@ -39,6 +40,8 @@ export default function LoginScreen({ navigation }) {
                     // a senha é case sensitive, mas o nome não
 
                     navigation.navigate("Home");
+                    AsyncStorage.setItem('pass', senha);
+                    AsyncStorage.setItem('name', nome);
 
                 }
 

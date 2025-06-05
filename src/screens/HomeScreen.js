@@ -1,49 +1,62 @@
-import React from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableHighlight,  } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
 import Header from "../components/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get('window').width;
 let login = true;
-export default function HomeScreen({ navigation }) {
-            
-            return (
-                <View style = {styles.container}>
-                    {!login && <Header/>
-                    // Se o usuário veio da tela de login, o header não é renderizado.
-                    }
-                    <Text style = {styles.title}>Home Screen</Text>
-                    <View style = {styles.buttonContainer}>
-                        <TouchableHighlight
-                            style={styles.button}
-                            onPress = {() => {
-                                navigation.navigate('Details');
-                                login = false;
-                                // Da primeira tela, qualquer troca de tela diz ao aplicativo que não viemos 
-                                // Mais da tela de login, então o valor de 'login' é definido para false.
-                            }}
-                            underlayColor={'#0047AB'}
-                        >
-                            <Text style={{fontSize: 20, alignContent: 'center', justifyContent: 'center'}}>Go To Details</Text>
-                        </TouchableHighlight>
-                    </View>
 
-                    <View style = {styles.buttonContainer}>
-                        <TouchableHighlight
-                            style={styles.button}
-                            onPress = {() => {
-                                navigation.navigate('Profile');
-                                login = false;
-                                // Da primeira tela, qualquer troca de tela diz ao aplicativo que não viemos 
-                                // Mais da tela de login, então o valor de 'login' é definido para false.
-                            }}
-                            underlayColor={'#0047AB'}
-                            >
-                            <Text style={{fontSize: 20, alignContent: 'center', justifyContent: 'center'}}>Go To Profile</Text>
-                        </TouchableHighlight>
-                    </View>
-                </View>
-        );
-    }
+export default function HomeScreen({ navigation }) {
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    const getUsername = async () => {
+      try {
+        const storedName = await AsyncStorage.getItem('name');
+        if (storedName !== null) {
+          setName(storedName);
+        }
+      } catch (e) {
+        alert("Deu erro pai");
+      }
+    };
+
+    getUsername();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      {!login && <Header />}
+      <Text style={styles.title}>Seja bem-vindo</Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate('Details');
+            login = false;
+          }}
+          underlayColor={'#0047AB'}
+        >
+          <Text style={{ fontSize: 20 }}>Go To Details</Text>
+        </TouchableHighlight>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate('Profile');
+            login = false;
+          }}
+          underlayColor={'#0047AB'}
+        >
+          <Text style={{ fontSize: 20 }}>Go To Profile</Text>
+        </TouchableHighlight>
+      </View>
+    </View>
+  );
+}
 
 
 
