@@ -31,10 +31,21 @@ export default function ProfileScreen({ navigation }) {
                 </View>
 
                 <View>
-                    <Text>
-                        Nome: {AsyncStorage.getItem('name')}
-                        
+                    <Text style = {{fontSize: 20}}>
+                        Currently logged as: {AsyncStorage.getItem("CUser")}
                     </Text>
+                </View>
+                <View style = {styles.buttonContainer}>
+                    <TouchableHighlight
+                        style={styles.button}
+                        underlayColor={'#ED1C24'}
+                        onPress={() => {
+                            AsyncStorage.removeItem("CUser");
+                            navigation.navigate("Login");
+                        }}
+                    >
+                        <Text style={{fontSize: 20, alignContent: 'center', justifyContent: 'center'}}>Logout</Text>
+                    </TouchableHighlight>
                 </View>
             </View>
     );
@@ -64,5 +75,6 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems: 'center',
         backgroundColor: '#CBC3E3',
+        borderRadius: 5,
     }
 });

@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const text = "Back";
 
 export default function Header( { navigation } ){
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 
         width: windowWidth,
         height: '15%',
-        top: '-30%'
+        top: windowHeight * -0.27,
 
     },
     button: {

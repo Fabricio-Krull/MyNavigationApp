@@ -7,27 +7,12 @@ const windowWidth = Dimensions.get('window').width;
 let login = true;
 
 export default function HomeScreen({ navigation }) {
-  const [name, setName] = useState('');
 
-  useEffect(() => {
-    const getUsername = async () => {
-      try {
-        const storedName = await AsyncStorage.getItem('name');
-        if (storedName !== null) {
-          setName(storedName);
-        }
-      } catch (e) {
-        alert("Deu erro pai");
-      }
-    };
-
-    getUsername();
-  }, []);
 
   return (
     <View style={styles.container}>
       {!login && <Header />}
-      <Text style={styles.title}>Seja bem-vindo</Text>
+      <Text style={styles.title}>Welcome</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableHighlight
@@ -81,6 +66,7 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        borderRadius: 5,
         justifyContent:'center',
         alignItems: 'center',
         backgroundColor: '#0096FF',
